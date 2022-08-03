@@ -1,0 +1,13 @@
+@model Wedding
+
+<a href="/dashboard">Dashboard</a>
+<a href="/logout">Logout</a>
+<h1>@Model.WedderOne and @Model.WedderTwo's Wedding</h1>
+<h4>@Model.Date.ToLongDateString()</h4>
+<h4>Guests:</h4>
+<ul>
+    @foreach (Rsvp u in Model.PeopleWhoRsvped)
+    {
+        <li>@u.UserWhoRsvped.FirstName @u.UserWhoRsvped.LastName</li>
+    }
+</ul>

@@ -1,0 +1,37 @@
+@model Wedding
+<h1>Welcome to the Wedding Planner</h1>
+<a href="/logout">Logout</a>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <th>Wedding</th>
+            <th>Date</th>
+            <th>Guest</th>
+            <th>Action</th>
+        </thead>
+        @foreach (Wedding w in @ViewBag.AllWeddings)
+        {
+        <tr>
+            <td><a href="/onewedding/@w.WeddingId">@w.WedderOne & @w.WedderTwo</a></td>
+            <td>@w.Date.ToLongDateString()</td>
+            <td>@w.PeopleWhoRsvped.Count</td>
+                @if(w.UserId == Context.Session.GetInt32("userId"))
+                {
+                    <td><a href="/wedding/delete/@w.WeddingId">Delete</a></td>
+                }
+                else
+                {
+                    if(w.PeopleWhoRsvped.Any(u => u.UserId == Context.Session.GetInt32("userId")))
+                    {
+                        <td><a href="/wedding/unrsvp/@w.WeddingId">Un-RSVP</a></td>
+                    }
+                    else
+                    {
+                    <td><a href="/Wedding/rsvp/@w.WeddingId">RSVP</a></td>
+                    }
+                }
+        </tr>
+        }
+    </table>
+</div>
+<a href="/wedding/add" class="btn btn-warning">New Wedding</a>

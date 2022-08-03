@@ -1,0 +1,43 @@
+@model Dish
+
+<a href="/">Home</a>
+<div class="text-center"><h1>Edit @Model.Name</h1></div>
+
+<div class="text-center">
+    <form action="/view/update/@Model.DishId" method="post" >
+        <div class="form-group">
+            <label for="Chef">Chef's Name</label>
+            <input asp-for="Chef">
+            <span asp-validation-for="Chef" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Name">Name of Dish</label>
+            <input asp-for="Name">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Calories"># of Calories</label>
+            <input asp-for="Calories">
+            <span asp-validation-for="Calories" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Tastiness">Tastiness</label>
+            <select asp-for="Tastiness">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <span asp-validation-for="Tastiness" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <input asp-for="Description">
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="submit" class="btn btn-info">
+        </div>
+    </form>
+</div>

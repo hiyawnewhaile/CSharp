@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model Owner
+
+<div class="text-center">
+    <form action="/owner/add" method="post">
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <input type="submit" value="Add Owner" class="btn btn-danger">
+    </div>
+    </form>
+    <h2>All Owners</h2>
+    <ul class="text-start">
+        @foreach (Owner a in ViewBag.AllOwners)
+        {
+            <li>@a.Name</li>
+            <ul>
+                @foreach (Pet p in a.PetsOwned)
+                {
+                    <li>@p.Name the @p.Species</li>
+                }
+            </ul>
+        }
+    </ul>
+</div>

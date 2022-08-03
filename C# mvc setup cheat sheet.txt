@@ -1,0 +1,26 @@
+1. Create new project 'dotnet new mvc --no-https -o ProjectName
+2. Install the two following packages:
+      dotnet add package Pomelo.EntityFrameworkCore.MySql --version 6.0.1
+      dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.3
+3. Create the Model using snippet 'modelC#'
+4. Create the MyContext.cs file in the Models folder with 'contextC#'
+5. Update app.settings.json and update the database name 'appsettingsC#'
+6. Update Program.cs 'programC#'
+7. Add context lines to the Controller:
+      private MyContext _context; - above the constructor
+      MyContext context - in parameter of constructor
+      _context = context; - in body of constructor
+8. Create Migrations with the following commands:
+      dotnet ef migrations add FirstMigration
+      dotnet ef database update
+
+
+Adding Session:
+1. Add lines to Program.cs
+     builder.Services.AddHttpContextAccessor(); 
+     builder.Services.AddSession(); - before calling the builder.Build() method
+     app.UseSession(); - before calling the app.MapControllerRoute() method
+2. Add to Controller
+     using Microsoft.AspNetCore.Http;
+3. Add to _ViewImports.cshtml
+     @using Microsoft.AspNetCore.Http

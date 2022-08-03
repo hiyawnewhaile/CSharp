@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model Actor
+
+<div class="text-center">
+    <h1>Actors</h1>
+    <div class="row">
+        <div class="col-6">
+            <form action="/actor/add" method="post">
+            <div class="form-group">
+                <label for="FirstName">First Name</label>
+                <input asp-for="FirstName" class="form-control">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="LastName">Last Name</label>
+                <input asp-for="LastName" class="form-control">
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" Value="Add Actor" class="btn btn-warning">
+            </div>
+            </form>
+        </div>
+        <div class="col-6">
+            <h2>All Actors</h2>
+            @foreach (Actor a in ViewBag.AllActors)
+            {
+                <h3>@a.FirstName @a.LastName</h3>
+                <ul>
+                    @foreach (CastList c in a.MoviesActedIn)
+                    {
+                        <li>@c.Movie.Title</li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>
